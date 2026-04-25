@@ -32,6 +32,12 @@ vim.o.confirm = true
 -- Snappy escape
 vim.o.ttimeoutlen = 1
 
+-- Indentation (tabs displayed 2-wide)
+vim.o.tabstop = 2
+vim.o.shiftwidth = 2
+vim.o.softtabstop = 0
+vim.o.expandtab = false
+
 -- Vim diagnostics
 vim.diagnostic.config({
 	severity_sort = true,    -- show most severe error first
@@ -130,7 +136,9 @@ vim.api.nvim_create_autocmd('FileType', {
 vim.lsp.enable({
 	'ty',            -- also $ uv tool install ty@latest
 	'ruff',          -- also $ uv tool install ruff@latest
-	'lua_ls'         -- also $ brew install lua-language-server
+	'lua_ls',        -- also $ brew install lua-language-server
+	'zls',           -- also install zls matching your zig version (https://github.com/zigtools/zls/releases)
+	'rust_analyzer', -- also $ rustup component add rust-analyzer
 })
 vim.o.signcolumn = 'yes' -- make lsp warnings not widen the gutter
 vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = 'Go to definition' })
@@ -240,13 +248,13 @@ end
 local alpha = require('alpha')
 local dashboard = require('alpha.themes.dashboard')
 dashboard.section.header.val = {
-	"                              __          ",
-	"                             / _)_        ",
-	"                    _.----._/ /           ",
-	"                   /         /            ",
-	"                __/ (  | (  |             ",
-	"               /__.-'|_|--|_|             ",
-	"                                          ",
+	"                           __          ",
+	"                          / _)_        ",
+	"                 _.----._/ /           ",
+	"                /         /            ",
+	"             __/ (  | (  |             ",
+	"            /__.-'|_|--|_|             ",
+	"                                       ",
 
 }
 dashboard.section.header.opts.hl = 'Comment'
